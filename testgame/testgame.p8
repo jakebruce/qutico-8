@@ -69,6 +69,10 @@ function _draw()
 	for e in all(entities) do
 		e:draw()
 	end
+	camera()
+	rect(0,0,127,127,5)
+	rect(1,1,126,126,6)
+	rect(2,2,125,125,7)
 end
 
 function draw_player(s)
