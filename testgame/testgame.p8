@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 29
 __lua__
 --testgame
---by qutico-8 team
+--by qutico-8: jake and rob
 
 function _init()
 	init_entities()
