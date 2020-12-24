@@ -42,6 +42,8 @@ def break_into(lines, w, h):
 
     lbl = lines[0]
     lines = lines[1:]
+    # pad with empty lines that were trimmed
+    lines.extend(["0"*len(lines[0]) for _ in range(h-len(lines)%h)])
     blocks = []
     y = 0
     while y+h <= len(lines):
@@ -49,7 +51,8 @@ def break_into(lines, w, h):
         while x+w <= len(lines[y]):
             block = ""
             for by in range(h):
-                block += lines[y+by][x:x+w]
+                for bx in range(w):
+                    block += lines[y+by][x+bx]
             blocks.append(block)
             x+=w
         y+=h
@@ -76,6 +79,6 @@ if os.path.exists(base+".gitp8"):
 with open(base+".gitp8", "w") as f:
     for lines in [hdr, lua, gfx, gff, lbl, map, sfx, msc]:
         if lines:
-            f.write("\r\n".join(lines))
-            f.write("\r\n")
+            f.write("\n".join(lines))
+            f.write("\n")
 

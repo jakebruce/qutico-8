@@ -79,6 +79,6 @@ if os.path.exists(base+".p8"):
 with open(base+".p8", "w") as f:
     for lines in [hdr, lua, gfx, gff, lbl, map, sfx, msc]:
         if lines:
-            f.write("\r\n".join(lines))
-            f.write("\r\n")
+            f.write("\n".join(lines))
+            f.write("\n")
 
