@@ -153,19 +153,32 @@ function make_camera()
 	camy=0
 	tcamx=0
 	tcamy=0
+	ttcamx=0
+	ttcamy=0
 	trauma=0
 end
 
 function update_camera()
-	tau=0.2
+	tau=0.1
 	
-	if player.fx then
-		tcamx=player.x-63
-		tcamy=player.y-63
+	if player.vx<-0.2 then
+		ttcamx=player.x-63-32
+	elseif player.vx>0.2 then
+		ttcamx=player.x-63+32
 	else
-		tcamx=player.x-63
-		tcamy=player.y-63
+		ttcamx=player.x-63
 	end
+	
+	if player.vy<-0.5 then
+		ttcamy=player.y-63-32
+	elseif player.vy>0.5 then
+		ttcamy=player.y-63+32
+	else
+		ttcamy=player.y-63
+	end
+	
+	tcamx=tau*ttcamx+(1-tau)*tcamx
+	tcamy=tau*ttcamy+(1-tau)*tcamy
 	
 	camx=tau*tcamx+(1-tau)*camx
 	camy=tau*tcamy+(1-tau)*camy
